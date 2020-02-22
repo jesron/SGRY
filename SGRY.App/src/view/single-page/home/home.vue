@@ -3,7 +3,7 @@
   
       <Content>
         <br>
-        <center><h1>欢迎使用上锅Demo</h1></center>
+        <center><h1>欢迎使用四哥Demo</h1></center>
       </Content>
   </div>
 </template>

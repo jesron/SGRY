@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 
 namespace SGRY.Api.Utils
@@ -24,16 +23,7 @@ namespace SGRY.Api.Utils
         //public static string DbType = "sql";
 
 
-        //public string DbType()
-        //{
-        //    Configuration = new ConfigurationBuilder()
-        //        .Add(new JsonConfigurationSource
-        //        {
-        //            Path = "appsettings.json",
-        //            ReloadOnChange = true
-        //        }).Build();
-        //    return Configuration.GetSection("AppSettings").GetValue<string>("DbType");
-        //}
+
 
         /// <summary>
         /// 发消息

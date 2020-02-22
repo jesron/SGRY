@@ -8,7 +8,7 @@
     <div class="content content-front">
       <div class="login">
         <div class="login-con">
-          <Card icon="log-in" title="上锅Demo" :bordered="false">
+          <Card icon="log-in" title="四哥Demo" :bordered="false">
             <div class="form-con">
               <login-form
                 @on-success-valid="handleSubmit"
