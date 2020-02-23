@@ -130,7 +130,7 @@ WHERE P.IsDeleted=0 AND P.Status=1";
         [HttpGet]
         public IActionResult Menu()
         {
-            var strSql = @"SELECT M.* FROM DncRolePermissionMapping AS RPM 
+            var strSql = @"SELECT distinct  M.* FROM DncRolePermissionMapping AS RPM 
 LEFT JOIN DncPermission AS P ON P.Code = RPM.PermissionCode
 INNER JOIN DncMenu AS M ON M.Guid = P.MenuGuid
 WHERE P.IsDeleted=0 AND P.Status=1 AND P.Type=0 AND M.IsDeleted=0 AND M.Status=1 AND EXISTS (SELECT 1 FROM DncUserRoleMapping AS URM WHERE URM.UserGuid={0} AND URM.RoleCode=RPM.RoleCode)";
