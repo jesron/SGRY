@@ -60,6 +60,7 @@
 
   <ItemGroup>
     <Folder Include="logs\" />
+    <Folder Include="RequestPayload\Rbac\Log\" />
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\upload\" />
   </ItemGroup>
