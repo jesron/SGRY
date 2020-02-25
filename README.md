@@ -43,11 +43,11 @@ SGRY DB First
 8.  每张表必须有状态和是否删除字段
 </pre>
 
-<p><img src="https://reg.ccstsc.com/1.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/2.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/3.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/4.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/5.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/6.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/1.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/2.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/3.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/4.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/5.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/6.jpg"/></p>
 
 
