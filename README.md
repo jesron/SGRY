@@ -27,7 +27,8 @@
     4.  增加实时消息模块。
     5.  增加异步线程池邮件发送模块。
     6.  增加复制粘贴Excel的方式导入数据的组件模块，可验证数据。常规的上传excel无法验证数据。
-    7.  最大的惊喜，本项目的  DB first 模式，按规则建好数据(mysql,sql都可以)后，直接生成所有代码，包括前后端，外键下拉，查询条件，时间组建，数据导入等等。
+    7.  解决多权限多菜单BUg
+    8.  最大的惊喜，本项目的  DB first 模式，按规则建好数据(mysql,sql都可以)后，直接生成所有代码，包括前后端，外键下拉，查询条件，时间组建，数据导入等等。
     
 SGRY DB First
 
@@ -42,11 +43,11 @@ SGRY DB First
 8.  每张表必须有状态和是否删除字段
 </pre>
 
-<p><img src="https://reg.ccstsc.com/1.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/2.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/3.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/4.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/5.jpg"/></p>
-<p><img src="https://reg.ccstsc.com/6.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/1.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/2.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/3.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/4.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/5.jpg"/></p>
+<p><img src="http://reg.ccstsc.com/6.jpg"/></p>
 
 
