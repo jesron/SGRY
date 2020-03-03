@@ -7,13 +7,15 @@
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
-      
+        <!-- <DropdownItem name="log">
+          我的日志
+        </DropdownItem> -->
         <DropdownItem name="logout">退出登录</DropdownItem>
-        <!--
-        <DropdownItem name="message">
+        
+        <!-- <DropdownItem name="message">
           消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
-        </DropdownItem>
-        -->
+        </DropdownItem> -->
+       
       </DropdownMenu>
     </Dropdown>
   </div>
@@ -59,6 +61,15 @@ export default {
         }
       });
     },
+    log () {
+      const route = {
+        name: "log_page",
+        meta: {
+          title: "我的日志"
+        }
+      };
+      this.$router.push(route);
+    },
     message () {
       this.$router.push({
         name: 'message_page'
@@ -67,6 +78,8 @@ export default {
     handleClick (name) {
       switch (name) {
         case 'logout': this.logout()
+          break
+        case 'log': this.log()
           break
         case 'message': this.message()
           break

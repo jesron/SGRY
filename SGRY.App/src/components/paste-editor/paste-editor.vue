@@ -55,11 +55,21 @@ export default {
      * @description 处理粘贴操作
      */
     handleContentChanged (content) {
-      let pasteData = content.trim()
+      let pasteData = content//.trim()
+
       this.$emit('on-content-change', pasteData)
-      let rows = pasteData.split((/[\n\u0085\u2028\u2029]|\r\n?/g)).map(row => {
+      let rows2 = pasteData.split((/[\n\u0085\u2028\u2029]|\r\n?/g)).map(row => {
         return row.split('\t')
       })
+
+      let rows=[];
+      rows2.map(row => {
+        if(row.length==1 && row[0]==""){
+        }else{
+          rows.push(row);
+        }
+      })
+
       if (content === '') rows = []
       this.pasteDataArr = rows
       this.clearLineClass()

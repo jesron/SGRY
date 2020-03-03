@@ -228,10 +228,20 @@ export const getDateMore = (data, type, jtime) => {
       const et = jtime[i];
       if (et != ""){
         if (type === 0){
-          if(element[et])element[et] = element[et].substr(0,16).replace("T"," ")
+          if(element[et])
+          {
+            element[et] = element[et].substr(0,16).replace("T"," ")
+          }else{
+            element[et] = '0001-01-01'
+          }
         } 
         else{
-          if(element[et])element[et] = element[et].substr(0,10)
+          if(element[et])
+          {
+            element[et] = element[et].substr(0,10)
+          }else{
+            element[et] = '0001-01-01'
+          }
         } 
       }
     }

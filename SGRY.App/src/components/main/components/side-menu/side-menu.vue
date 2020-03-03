@@ -29,6 +29,9 @@
 import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
 import { getUnion } from '@/libs/tools'
+// import {
+//   getCertificateListAllcount
+// } from "@/api/sgry/DncCertificate";
 import mixin from './mixin'
 
 export default {
@@ -73,7 +76,7 @@ export default {
   data () {
     return {
       openedNames: [],
-      zsxqnum:3
+      zsxqnum:0
     }
   },
   methods: {

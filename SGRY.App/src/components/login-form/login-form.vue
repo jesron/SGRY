@@ -26,7 +26,7 @@
         :loading="loading"
       >{{btnLoginText}}</Button>
     </FormItem>
-    <p class="login-tip">上海Demo系统v1.0</p>
+    <p class="login-tip">四哥若言</p>
   </Form>
 </template>
 <script>

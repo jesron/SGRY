@@ -21,6 +21,7 @@
       :height="height"
       :loading="loading"
       :disabled-hover="disabledHover"
+      :show-summary="showsummary "
       :highlight-row="highlightRow"
       :row-class-name="rowClassName"
       :size="size"
@@ -115,6 +116,9 @@ export default {
       type: String
     },
     disabledHover: {
+      type: Boolean
+    },
+    showsummary: {
       type: Boolean
     },
     disabledPagger: {
