@@ -18,7 +18,7 @@ using SGRY.Api.RequestPayload.Rbac.Log;
 using SGRY.Api.ViewModels.Rbac.DncLog;
 using System.Transactions;
 using System.Collections.Generic;
-
+using MySql.Data.MySqlClient;
 
 namespace SGRY.Api.Controllers.Api.SGRY1
 {
@@ -202,13 +202,26 @@ namespace SGRY.Api.Controllers.Api.SGRY1
         {
             using (_dbContext)
             {
-                var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
-                var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
-                var sql = string.Format("UPDATE DncLog SET IsDeleted=@IsDeleted WHERE id IN ({0})", parameterNames);
-                parameters.Add(new SqlParameter("@IsDeleted", (int)isDeleted));
-                _dbContext.Database.ExecuteSqlCommand(sql, parameters);
-                var response = ResponseModelFactory.CreateInstance;
-                return response;
+                if (ToolService.DbType.Equals("mysql"))
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new MySqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncLog SET IsDeleted=@IsDeleted WHERE id IN ({0})", parameterNames);
+                    parameters.Add(new MySqlParameter("@IsDeleted", (int)isDeleted));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                else
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncLog SET IsDeleted=@IsDeleted WHERE id IN ({0})", parameterNames);
+                    parameters.Add(new SqlParameter("@IsDeleted", (int)isDeleted));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
             }
         }
 
@@ -236,13 +249,27 @@ namespace SGRY.Api.Controllers.Api.SGRY1
         {
             using (_dbContext)
             {
-                var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
-                var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
-                var sql = string.Format("UPDATE DncLog SET Status=@Status WHERE id IN ({0})", parameterNames);
-                parameters.Add(new SqlParameter("@Status", (int)status));
-                _dbContext.Database.ExecuteSqlCommand(sql, parameters);
-                var response = ResponseModelFactory.CreateInstance;
-                return response;
+                if (ToolService.DbType.Equals("mysql"))
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new MySqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncLog SET Status=@Status WHERE id IN ({0})", parameterNames);
+                    parameters.Add(new MySqlParameter("@Status", (int)status));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                else
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncLog SET Status=@Status WHERE id IN ({0})", parameterNames);
+                    parameters.Add(new SqlParameter("@Status", (int)status));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                
             }
         }
 

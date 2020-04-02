@@ -7,6 +7,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using SGRY.Api.Utils;
 using System.Collections.Generic;
 using System.Data;
 
@@ -33,8 +34,17 @@ namespace SGRY.Api.Extensions.DataAccess
                 command.CommandText = sql;
                 if (parameters != null)
                 {
-                    var _parameters = parameters.ToSqlParamsArray();
-                    command.Parameters.AddRange(_parameters);
+                    if (ToolService.DbType.Equals("mysql"))
+                    {
+                        var _parameters = parameters.ToMySqlParamsArray();
+                        command.Parameters.AddRange(_parameters);
+                    }
+                    else
+                    {
+                        var _parameters = parameters.ToSqlParamsArray();
+                        command.Parameters.AddRange(_parameters);
+                    }
+                        
                 }
                 
                 database.OpenConnection();

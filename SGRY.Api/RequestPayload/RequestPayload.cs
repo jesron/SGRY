@@ -43,10 +43,10 @@ namespace SGRY.Api.RequestPayload
             get
             {
                 var orderBy = "";
-                var sort = Sort.Where(x => string.IsNullOrEmpty(x.Field) && string.IsNullOrEmpty(x.Direct)).ToList();
-                if (sort.Count > 0)
+                //var sort = Sort.Where(x => string.IsNullOrEmpty(x.Field) && string.IsNullOrEmpty(x.Direct)).ToList();
+                if (Sort.Count > 0)
                 {
-                    orderBy = "ORDER BY " + string.Join(",", sort.Select(x => $"{x.Field} {x.Direct}"));
+                    orderBy = "ORDER BY " + string.Join(",", Sort.Select(x => $"{x.Field} {x.Direct}"));
                 }
                 return orderBy;
             }

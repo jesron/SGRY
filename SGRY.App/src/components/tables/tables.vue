@@ -1,3 +1,8 @@
+<style>
+.ivu-table-wrapper{
+    overflow:visible !important;
+}
+</style>
 <template>
   <div class="dnc-table-wrap">
     <slot name="search">

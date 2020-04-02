@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Collections;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace SGRY.Api.Extensions.DataAccess
 {
@@ -45,6 +46,56 @@ namespace SGRY.Api.Extensions.DataAccess
 
 
 
+        #region  mysql
+        public static object[] ToMySqlParamsArray(this object obj, MySqlParameter[] additionalParams = null)
+        {
+            var result = ToMySqlParamsList(obj, additionalParams);
+            return result.ToArray<object>();
+
+        }
+
+        public static List<MySqlParameter> ToMySqlParamsList(this object obj, MySqlParameter[] additionalParams = null)
+        {
+            var props = (
+                from p in obj.GetType().GetProperties()
+                let nameAttr = p.GetCustomAttributes(typeof(QueryParamNameAttribute), true)
+                let ignoreAttr = p.GetCustomAttributes(typeof(QueryParamIgnoreAttribute), true)
+                select new { Property = p, Names = nameAttr, Ignores = ignoreAttr }).ToList();
+
+            var result = new List<MySqlParameter>();
+
+            props.ForEach(p =>
+            {
+                if (p.Ignores != null && p.Ignores.Length > 0)
+                    return;
+
+                var name = p.Names.FirstOrDefault() as QueryParamNameAttribute;
+                var pinfo = new QueryParamInfo();
+
+                if (name != null && !String.IsNullOrWhiteSpace(name.Name))
+                    pinfo.Name = name.Name.Replace("@", "");
+                else
+                    pinfo.Name = p.Property.Name.Replace("@", "");
+
+                pinfo.Value = p.Property.GetValue(obj) ?? DBNull.Value;
+                var sqlParam = new MySqlParameter(pinfo.Name, TypeConvertor.ToSqlDbType(p.Property.PropertyType))
+                {
+                    Value = pinfo.Value
+                };
+
+                result.Add(sqlParam);
+            });
+
+            if (additionalParams != null && additionalParams.Length > 0)
+                result.AddRange(additionalParams);
+
+            return result;
+
+        }
+        #endregion
+
+
+        #region  sql
         public static object[] ToSqlParamsArray(this object obj, SqlParameter[] additionalParams = null)
         {
             var result = ToSqlParamsList(obj, additionalParams);
@@ -90,6 +141,8 @@ namespace SGRY.Api.Extensions.DataAccess
             return result;
 
         }
+        #endregion
+
     }
 
 

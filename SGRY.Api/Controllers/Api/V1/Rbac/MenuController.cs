@@ -20,6 +20,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using SGRY.Api.Utils;
+using MySql.Data.MySqlClient;
 
 namespace SGRY.Api.Controllers.Api.V1.Rbac
 {
@@ -271,13 +273,27 @@ namespace SGRY.Api.Controllers.Api.V1.Rbac
         {
             using (_dbContext)
             {
-                var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
-                var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
-                var sql = string.Format("UPDATE DncMenu SET IsDeleted=@IsDeleted WHERE Guid IN ({0})", parameterNames);
-                parameters.Add(new SqlParameter("@IsDeleted", (int)isDeleted));
-                _dbContext.Database.ExecuteSqlCommand(sql, parameters);
-                var response = ResponseModelFactory.CreateInstance;
-                return response;
+                if (ToolService.DbType.Equals("mysql"))
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new MySqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncMenu SET IsDeleted=@IsDeleted WHERE Guid IN ({0})", parameterNames);
+                    parameters.Add(new MySqlParameter("@IsDeleted", (int)isDeleted));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                else
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncMenu SET IsDeleted=@IsDeleted WHERE Guid IN ({0})", parameterNames);
+                    parameters.Add(new SqlParameter("@IsDeleted", (int)isDeleted));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                
             }
         }
 
@@ -291,13 +307,27 @@ namespace SGRY.Api.Controllers.Api.V1.Rbac
         {
             using (_dbContext)
             {
-                var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
-                var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
-                var sql = string.Format("UPDATE DncMenu SET Status=@Status WHERE Guid IN ({0})", parameterNames);
-                parameters.Add(new SqlParameter("@Status", (int)status));
-                _dbContext.Database.ExecuteSqlCommand(sql, parameters);
-                var response = ResponseModelFactory.CreateInstance;
-                return response;
+                if (ToolService.DbType.Equals("mysql"))
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new MySqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncMenu SET Status=@Status WHERE Guid IN ({0})", parameterNames);
+                    parameters.Add(new MySqlParameter("@Status", (int)status));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                else
+                {
+                    var parameters = ids.Split(",").Select((id, index) => new SqlParameter(string.Format("@p{0}", index), id)).ToList();
+                    var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
+                    var sql = string.Format("UPDATE DncMenu SET Status=@Status WHERE Guid IN ({0})", parameterNames);
+                    parameters.Add(new SqlParameter("@Status", (int)status));
+                    _dbContext.Database.ExecuteSqlCommand(sql, parameters);
+                    var response = ResponseModelFactory.CreateInstance;
+                    return response;
+                }
+                    
             }
         }
 
